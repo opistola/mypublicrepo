@@ -43,7 +43,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "10"
 spec:
-  replicas: 5
+  replicas: 1
   selector:
     matchLabels:
       app: my-app
@@ -87,10 +87,10 @@ spec:
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: myapp-wait-presync
+  name: myapp-wait-sync1
   annotations:
     argocd.argoproj.io/sync-wave: "5"
-    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook: Sync
     argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
 spec:
   template:
@@ -98,7 +98,7 @@ spec:
       containers:
       - name: ubuntu
         image: ubuntu:latest
-        command: ["sh", "-c", "env && sleep 10" ]
+        command: ["sh", "-c", "env && sleep 5" ]
         env:
           - name: SECRET_PASSWORD
             valueFrom:
@@ -112,7 +112,7 @@ spec:
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: myapp-wait-sync
+  name: myapp-wait-sync2
   annotations:
     argocd.argoproj.io/sync-wave: "5"
     argocd.argoproj.io/hook: Sync
@@ -137,7 +137,7 @@ spec:
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: myapp-wait-postsync
+  name: myapp-wait-sync3
   annotations:
     argocd.argoproj.io/sync-wave: "5"
     argocd.argoproj.io/hook: PostSync
@@ -148,7 +148,7 @@ spec:
       containers:
       - name: ubuntu
         image: ubuntu:latest
-        command: ["sh", "-c", "env && sleep 10" ]
+        command: ["sh", "-c", "env && sleep 15" ]
         env:
           - name: SECRET_PASSWORD
             valueFrom:
