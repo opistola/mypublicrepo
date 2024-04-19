@@ -43,7 +43,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "10"
 spec:
-  replicas: 1
+  replicas: 4
   selector:
     matchLabels:
       app: my-app
@@ -140,7 +140,7 @@ metadata:
   name: myapp-wait-sync3
   annotations:
     argocd.argoproj.io/sync-wave: "5"
-    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook: Sync
     argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
 spec:
   template:
