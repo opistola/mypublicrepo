@@ -43,7 +43,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "10"
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: my-app
@@ -99,8 +99,7 @@ spec:
       - name: ubuntu
         image: ubuntu:latest
         command:
-          - "echo"
-          - "$(SECRET_PASSWORD)"
+          - "env"
           - "&&"
           - "sleep"
           - "10"
