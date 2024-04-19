@@ -87,7 +87,7 @@ spec:
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: myapp-wait-PreSync
+  name: myapp-wait-presync
   annotations:
     argocd.argoproj.io/sync-wave: "10"
     argocd.argoproj.io/hook: PreSync
