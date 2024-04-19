@@ -98,11 +98,7 @@ spec:
       containers:
       - name: ubuntu
         image: ubuntu:latest
-        command:
-          - "env"
-          - "&&"
-          - "sleep"
-          - "10"
+        command: ["sh", "-c", "env && sleep 10" ]
         env:
           - name: SECRET_PASSWORD
             valueFrom:
