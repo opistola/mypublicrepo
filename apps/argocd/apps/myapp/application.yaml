@@ -99,8 +99,17 @@ spec:
       - name: ubuntu
         image: ubuntu:latest
         command:
+          - "echo"
+          - "$SECRET_PASSWORD"
+          - "&&"
           - "sleep"
           - "10"
+        env:
+          - name: SECRET_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: db-credentials
+                key: password
       restartPolicy: Never
   backoffLimit: 2
 
